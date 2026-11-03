@@ -17,12 +17,12 @@ jupyter: python3
 
 ## 1.1 Introduction
 
-This report uses **Option C, the watershed conditions dataset** (`data/watershed.csv`).
+This report uses ** The watershed conditions dataset**.
 The response variable is `streamflow_index`, and the three predictors are
 `snowpack_pct_normal`, `precip_mm` and `mean_temp_c`. The goal is to fit and diagnose a
 linear model using NumPy matrix computation: standardizing the predictors, building the
 design matrix, fitting by least squares, and checking the fit with QR, SVD and condition
-numbers. The data are synthetic, so no causal claims are made.
+numbers.
 
 ## 1.2 Data inspection and validation
 
@@ -30,8 +30,6 @@ numbers. The data are synthetic, so no causal claims are made.
 import numpy as np
 import pandas as pd
 
-# Relative path: Quarto runs this file from the reports/ folder,
-# so the data folder is one level up.
 df = pd.read_csv("../data/watershed.csv")
 
 df.head()
@@ -51,17 +49,6 @@ df.isna().sum()
 
 ```{python}
 df["id"].is_unique
-```
-
-```{python}
-n_obs, n_vars = df.shape
-n_missing = int(df.isna().sum().sum())
-ids_unique = bool(df["id"].is_unique)
-
-print(f"Observations: {n_obs}")
-print(f"Variables: {n_vars}")
-print(f"Total missing values: {n_missing}")
-print(f"IDs unique: {ids_unique}")
 ```
 
 The dataset has one row per observation and five variables: an `id` column, the three
